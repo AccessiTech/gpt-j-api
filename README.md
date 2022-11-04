@@ -64,14 +64,41 @@ curl -X 'POST' \
 
 Just SSH into a TPU VM. This code was tested on both the v2-8 and v3-8 variants.
 
+### Pre-installation
+
+Before you begin, make sure to have a few requirements satisfied.
+
+A Rust Compiler, THIS IS REQUIRED, in my case I chose [`rustup`](https://rustup.rs/):
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+[Wheel support](https://realpython.com/python-wheels/), technically optional but it will make installation much faster:
+```
+python -m pip install -U pip wheel setuptools
+```
+
+wGet, otherwise be prepared to use another option to get the weights:
+```
+homebrew install wget
+```
+
+zstd, to decompress the weights:
+```
+homebrew install zstd
+```
+
+### Installation and Usage
+
 First, install the requirements and get the weights:
 ```
 python3 -m pip install -r requirements.txt
 wget https://the-eye.eu/public/AI/GPT-J-6B/step_383500_slim.tar.zstd
-sudo apt install zstd
-tar -I zstd -xf step_383500_slim.tar.zstd
+homebrew install zstd
+unzstd step_383500_slim.tar.zstd
 rm step_383500_slim.tar.zstd
 ```
+
 
 And just run
 ```
